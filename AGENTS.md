@@ -47,6 +47,7 @@ DPS_Studio_CWT/
 ├── scripts/                 # Entrypoints, environment setup, safe tooling
 ├── docs/                    # Research plan, methodology, decisions, pending logs
 ├── artifacts/               # Persistent generated research results, per TASK, ignored by Git
+├── raw_data/                # Real experimental data, strictly read-only, permanently Git-ignored
 ├── AGENTS.md
 ├── README.md
 ├── .gitignore
@@ -57,6 +58,7 @@ DPS_Studio_CWT/
 - The corrected `docs/RESEARCH_PLAN.md` (v1.1) supplied with this scaffold is the **canonical current plan**. During TASK-CWT-000, **move** the existing root-level `DPS_CWT_Research_Plan_2026-10-29.md` (v1.0) to `docs/archive/` for provenance; do not overwrite v1.1 with the older copy. Preserve, compare, and log both; do not delete either.
 - `src`, `tests`, `configs`, `benchmarks`, `scripts`, `docs` hold **reviewable code/text tracked by Git** (after explicit approval to commit). Use `artifacts/TASK-CWT-XXX/` for durable generated plots, tables, manifests and performance runs. Do not delete old artifacts without authorization.
 - `.local_cache/` is **disposable** (including virtual environment, pycache, pytest, Ruff, mypy, pip/uv cache, Matplotlib cache, temp files, build intermediates). Artifacts and Obsidian logs are **not** disposable caches.
+- `raw_data/` is the user-authorized additional first-level directory for real experimental data: **strictly read-only and permanently Git-ignored**. It is not a cache or an artifacts directory; do not access its contents without a separately authorized real-data TASK. `artifacts/` holds persistent generated research results and must not be silently deleted.
 - Do not reorganize the frozen first-level layout after TASK-CWT-000 without explicit approval; subfolders inside the approved roots may be added as needed for a TASK.
 
 ## 4. Cache discipline: mandatory, not cosmetic

@@ -82,7 +82,7 @@ DPS_Studio_CWT/
 
 ### TASK-CWT-000：仓库规范与目录初始化
 
-仅核验已克隆的独立 Git 仓库、预期分支、现有文件及远程地址；放置 `AGENTS.md`、`docs/RESEARCH_PLAN.md`、`scripts/cwt_env.ps1`，合并 `.gitignore` 排除项，创建上述允许的一级目录。确保废弃缓存只进入 `.local_cache/`，不进行算法实现、依赖安装、真实数据读取、commit 或 push。按每个实质步骤追加 Obsidian TASK 日志。
+仅核验已克隆的独立 Git 仓库、预期分支、现有文件及远程地址；放置 `AGENTS.md`、`docs/RESEARCH_PLAN.md`、`scripts/cwt_env.ps1`，合并 `.gitignore` 排除项，创建上述允许的一级目录。确保废弃缓存只进入 `.local_cache/`，不进行算法实现、依赖安装、真实数据读取、commit 或 push。按 AGENTS.md §8 在同一篇 Obsidian 轻量 TASK 摘要中更新关键进度，详细证据保留在仓库 docs/ 和 artifacts/。
 
 ### TASK-CWT-001：独立仓库与最小可验证内核
 
@@ -119,7 +119,7 @@ DPS_Studio_CWT/
 
 **GitHub 仓库已由用户创建并在本地克隆：禁止重新 `git init`、修改 remote、自动 commit/push。** 每个 TASK 必须核验本机 `git rev-parse --show-toplevel`、`git branch --show-current`、`git status --short` 和 `git remote -v`。目标分支为 `research/cwt-morlet`；如未处于该分支，先报告并等待用户明确授权切换。
 
-每一 TASK **从开始时**就在 `D:\Research\Notes\05项目\DPS_Studio_CWT` 创建日志，并在每个实质步骤结束后追加记录；文件名建议 `YYYY-MM-DD_TASK-CWT-001_独立CWT内核.md`，记录日期、分支、状态、verdict、artifact、修改文件、实测结果、测试、Git/raw/Production 边界、待解决问题及下一步；日志不是 source of truth。每一 TASK 不得在交付后自动推进下一 TASK。
+每一 TASK **从开始时**就在 `D:\Research\Notes\05项目\DPS_Studio_CWT` 创建一篇 IN PROGRESS 轻量摘要，并在关键里程碑和完成时更新同一文件；按 AGENTS.md §8 通常保持 15–30 行、约 500 中文字以内。TASK-CWT-001 文件名为 `YYYY-MM-DD_TASK-CWT-001_最小CWT内核.md`，仅记录日期、分支、状态、verdict、主要路径、1–3 项关键结果、验收与 Git/raw/Production 边界、未解决问题及下一步；不写逐步骤流水账。完整方法与证据保留在 docs/ 和 artifacts/，日志不是 source of truth。每一 TASK 不得在交付后自动推进下一 TASK。
 
 ## 7. 已核对的基础文献
 
@@ -148,5 +148,5 @@ TASK-CWT-001 — 独立 Morlet-CWT PDV Research 初始化与最小正确内核
 
 产物：源代码、测试、配置、实验章程、docs/DECISION_LOG.md、artifacts/task_cwt001/ 下可复现实验 CSV/PNG/manifest.json，记录运行环境、git status/diff、pytest、ruff、mypy --strict 的真实输出。不能凭文字声称测试通过；失败也记录。
 
-从开始时创建并逐步追加 Obsidian 日志；完成后在 D:\Research\Notes\05项目\DPS_Studio_CWT\YYYY-MM-DD_TASK-CWT-001_独立CWT内核.md 写入最终结论，简述 task/date/branch/status/verdict/artifact、做了什么、修改文件、关键定量结果、测试、Git/raw/Production 边界、未解决问题和下一步建议。日志不是 source of truth。只完成本 TASK 后停止，不做后续 TASK。
+从开始时创建 IN PROGRESS Obsidian 轻量摘要，在关键里程碑和完成时更新 D:\Research\Notes\05项目\DPS_Studio_CWT\YYYY-MM-DD_TASK-CWT-001_最小CWT内核.md 同一文件，通常 15–30 行、约 500 中文字以内；简述 task/date/branch/status/verdict/artifact、完成内容、主要修改路径、1–3 项关键结果、测试、Git/raw/Production 边界、未解决问题和下一步建议，不写执行流水账。完整技术报告与证据留在仓库 docs/ 和 artifacts/，日志不是 source of truth。只完成本 TASK 后停止，不做后续 TASK。
 ```

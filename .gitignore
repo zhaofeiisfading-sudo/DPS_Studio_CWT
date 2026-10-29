@@ -258,3 +258,6 @@ secrets.*
 *.temp
 .DS_Store
 Thumbs.db
+
+# User-authorized real experimental data directory (TASK-CWT-001).
+/raw_data/
