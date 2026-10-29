@@ -218,3 +218,43 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# DPS_Studio_CWT research boundaries (TASK-CWT-000; append-only addition)
+/.local_cache/
+/artifacts/
+
+# Real waveform locations/formats; CSV fixtures remain eligible for tracking.
+/data/raw/
+**/raw/
+*.wfm
+*.trc
+*.tdms
+*.tdm
+*.bin
+# .dat can also contain processed results; ignoring it does not classify it as raw.
+*.dat
+
+# Local secrets / credentials; never store working credentials in this repo.
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+client_secret*.json
+secrets/
+secrets.*
+*.token
+
+# Accidentally misplaced disposable outputs (still prohibited at repo root).
+/cache/
+/tmp/
+/temp/
+/logs/
+/results/
+/outputs/
+.pytest_tmp/
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db

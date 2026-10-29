@@ -1,0 +1,46 @@
+# DPS_Studio_CWT: source in PowerShell 7 using `. .\scripts\cwt_env.ps1`
+# Scope: only changes environment variables in the current PowerShell session.
+# Does not install packages, change Git state, or delete any files.
+$ErrorActionPreference = 'Stop'
+$repoRoot = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
+$expectedRepoRoot = 'D:\Code\Python_Projects\DPS_Studio_CWT'
+
+if (-not [string]::Equals(
+        $repoRoot.TrimEnd('\'),
+        $expectedRepoRoot.TrimEnd('\'),
+        [System.StringComparison]::OrdinalIgnoreCase
+    )) {
+    throw "CWT cache setup refused: expected $expectedRepoRoot; resolved $repoRoot"
+}
+
+$cache = Join-Path $repoRoot '.local_cache'
+$subdirs = @(
+    'pycache', 'pytest_cache', 'pytest_tmp', 'ruff', 'mypy',
+    'pip', 'uv', 'matplotlib', 'tmp', 'xdg', 'numba', 'venv'
+)
+foreach ($dir in $subdirs) {
+    [void](New-Item -ItemType Directory -Path (Join-Path $cache $dir) -Force)
+}
+
+$env:PYTHONPYCACHEPREFIX = Join-Path $cache 'pycache'
+$env:PYTHONPATH = $null  # do not accidentally inherit imports from other projects
+$env:RUFF_CACHE_DIR = Join-Path $cache 'ruff'
+$env:MYPY_CACHE_DIR = Join-Path $cache 'mypy'
+$env:MPLCONFIGDIR = Join-Path $cache 'matplotlib'
+$env:PIP_CACHE_DIR = Join-Path $cache 'pip'
+$env:UV_CACHE_DIR = Join-Path $cache 'uv'
+$env:XDG_CACHE_HOME = Join-Path $cache 'xdg'
+$env:NUMBA_CACHE_DIR = Join-Path $cache 'numba'
+$env:TEMP = Join-Path $cache 'tmp'
+$env:TMP = Join-Path $cache 'tmp'
+$env:TMPDIR = Join-Path $cache 'tmp'
+
+# Paths are relative to the repo root because this script also sets the location.
+# These are temporary pytest outputs, not durable experiment artifacts.
+$env:PYTEST_ADDOPTS = '--basetemp=.local_cache/pytest_tmp -o cache_dir=.local_cache/pytest_cache'
+$env:UV_PROJECT_ENVIRONMENT = Join-Path $cache 'venv'
+
+Set-Location -LiteralPath $repoRoot
+Write-Host "CWT environment ready. Root: $repoRoot"
+Write-Host "Disposable caches: $cache"
+Write-Host 'Persistent experiment outputs: artifacts/TASK-CWT-XXX/'
