@@ -41,4 +41,31 @@ velocity = apparent_velocity(candidate.frequency_hz,
 
 协议见 `docs/TASK-CWT-002_PROTOCOL.md`，详细结论见 `docs/TASK-CWT-002_REPORT.md`。
 `artifacts/TASK-CWT-002/` 保存合成信号/真值、指标、图件、环境与审计记录；
-`raw_data/` 永久忽略且只读。任务脚本不读取真实数据，不开发GUI或执行STFT比较。
+`raw_data/` 永久忽略且只读。上述合成 benchmark 不读取真实数据，不开发GUI或执行STFT比较。
+
+TASK-CWT-003 增加显式 TOML 映射的真实数据批处理后端：
+
+```powershell
+. .\scripts\cwt_env.ps1
+# 审计全部文件；不计算 CWT。
+& .local_cache/venv/Scripts/python.exe -m pdv_cwt.batch --config configs/real_batch.toml --audit-only
+# 全量、逐通道、独立进程；每次创建新 run，不覆盖旧结果。
+& .local_cache/venv/Scripts/python.exe -m pdv_cwt.batch --config configs/real_batch.toml
+# 独立核验本批真实数据 CSV 与保存的 CWT 显示矩阵（替换实际目录）。
+& .local_cache/venv/Scripts/python.exe scripts/audit_cwt003_outputs.py artifacts/TASK-CWT-003/real_runs/run_...
+```
+
+`configs/real_batch.toml` 逐文件记录零起始列索引、分隔符、表头行数及单位依据。
+本批 10 个数据文件的 s/V 和原始波形属性由用户在任务聊天中明确确认；列名只表示列号。
+CSV/DAT 文本 Reader 支持明确配置的逗号、分号、制表符或空白分隔，以及多通道和 SI 转换。
+未知单位、缺失/非法值和不均匀采样均明确报错，不删点、重采样或修复；文件/通道失败隔离。
+完整 CWT 分配前检查显式预算及可用 RAM，超预算报 FAILED_RESOURCE，不偷偷抽短波形。
+
+所有成功通道保存 `cwt_scalogram.png`、`metadata.json`、`analysis_status.json`、
+全样点 `candidate_velocity.csv`、诊断图和明确抽列的 `display_response.npz`。
+完整复系数矩阵在计算时保留于 RAM，不永久保存；CSV 保留全部样点，显示抽列不改变候选。
+未知波长/光学偏置时状态为 SCALOGRAM_ONLY，CSV 速度栏为空；此状态仍包含候选频率和诊断。
+无显式噪声模型时质量为 UNKNOWN / NOT_EVALUATED，通过率为空，不能解释为零通过率或无信号。
+批次根目录同时提供 `file_summary.csv`（文件分母）、`batch_summary.csv`（通道分母）、
+`batch_manifest.json` 和 `batch_status.md`；每个文件包括 NOT_RAW 占位项均列入清单。
+正式结果和限制见 `docs/TASK-CWT-003_REPORT.md`。真实速度、方向、噪声可靠性均未认证。

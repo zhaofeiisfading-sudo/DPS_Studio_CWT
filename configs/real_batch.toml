@@ -1,0 +1,177 @@
+# TASK-CWT-003. Mapping confirmed by user in this chat on 2026-10-30.
+# No inferred wavelength, optical offset, noise sigma, instrument or channel purpose.
+[batch]
+raw_root = "raw_data"
+output_root = "artifacts/TASK-CWT-003/real_runs"
+max_input_bytes = 536870912
+max_reader_bytes = 268435456
+display_max_columns = 2400
+worker_timeout_s = 900
+
+[cwt]
+wavelet = "cmor1.5-1.0"
+frequency_min_hz = 100000000.0
+frequency_max_hz = 6000000000.0
+voices_per_octave = 24
+precision = 18
+# Full-record priority, increased planning budget for records larger than 80k.
+# Also reject estimates > 70% of measured available physical RAM.
+max_memory_bytes = 2147483648
+alias_tail_tolerance = 0.000001
+allow_alias_risk = false
+
+[[files]]
+path = "20201210m.dat"
+delimiter = ","
+skip_rows = 0
+encoding = "utf-8-sig"
+time_column = 0
+time_unit = "s"
+raw_confirmed = true
+evidence = "User confirmed in TASK-CWT-003 chat 2026-10-30: all ten files are raw PDV; first column s, remaining columns V. Channel names identify columns only."
+[[files.channels]]
+name = "voltage_col1"
+column = 1
+voltage_unit = "V"
+
+[[files]]
+path = "20201211m.dat"
+delimiter = ","
+skip_rows = 0
+encoding = "utf-8-sig"
+time_column = 0
+time_unit = "s"
+raw_confirmed = true
+evidence = "User confirmed in TASK-CWT-003 chat 2026-10-30: all ten files are raw PDV; first column s, remaining columns V. Channel names identify columns only."
+[[files.channels]]
+name = "voltage_col1"
+column = 1
+voltage_unit = "V"
+
+[[files]]
+path = "20201214m.dat"
+delimiter = ","
+skip_rows = 0
+encoding = "utf-8-sig"
+time_column = 0
+time_unit = "s"
+raw_confirmed = true
+evidence = "User confirmed in TASK-CWT-003 chat 2026-10-30: all ten files are raw PDV; first column s, remaining columns V. Channel names identify columns only."
+[[files.channels]]
+name = "voltage_col1"
+column = 1
+voltage_unit = "V"
+
+[[files]]
+path = "20221017a.dat"
+delimiter = ","
+skip_rows = 0
+encoding = "utf-8-sig"
+time_column = 0
+time_unit = "s"
+raw_confirmed = true
+evidence = "User confirmed in TASK-CWT-003 chat 2026-10-30: all ten files are raw PDV; first column s, remaining columns V. Channel names identify columns only."
+[[files.channels]]
+name = "voltage_col1"
+column = 1
+voltage_unit = "V"
+
+[[files]]
+path = "20231019-ch1.dat"
+delimiter = ","
+skip_rows = 0
+encoding = "utf-8-sig"
+time_column = 0
+time_unit = "s"
+raw_confirmed = true
+evidence = "User confirmed in TASK-CWT-003 chat 2026-10-30: all ten files are raw PDV; first column s, remaining columns V. Channel names identify columns only."
+[[files.channels]]
+name = "voltage_col1"
+column = 1
+voltage_unit = "V"
+
+[[files]]
+path = "20260607.csv"
+delimiter = ","
+skip_rows = 0
+encoding = "utf-8-sig"
+time_column = 0
+time_unit = "s"
+raw_confirmed = true
+evidence = "User confirmed in TASK-CWT-003 chat 2026-10-30: all ten files are raw PDV; first column s, remaining columns V. Channel names identify columns only."
+[[files.channels]]
+name = "voltage_col1"
+column = 1
+voltage_unit = "V"
+[[files.channels]]
+name = "voltage_col2"
+column = 2
+voltage_unit = "V"
+
+[[files]]
+path = "20260630-1.csv"
+delimiter = ","
+skip_rows = 0
+encoding = "utf-8-sig"
+time_column = 0
+time_unit = "s"
+raw_confirmed = true
+evidence = "User confirmed in TASK-CWT-003 chat 2026-10-30: all ten files are raw PDV; first column s, remaining columns V. Channel names identify columns only."
+[[files.channels]]
+name = "voltage_col1"
+column = 1
+voltage_unit = "V"
+[[files.channels]]
+name = "voltage_col2"
+column = 2
+voltage_unit = "V"
+
+[[files]]
+path = "20260630-2.csv"
+delimiter = ","
+skip_rows = 0
+encoding = "utf-8-sig"
+time_column = 0
+time_unit = "s"
+raw_confirmed = true
+evidence = "User confirmed in TASK-CWT-003 chat 2026-10-30: all ten files are raw PDV; first column s, remaining columns V. Channel names identify columns only."
+[[files.channels]]
+name = "voltage_col1"
+column = 1
+voltage_unit = "V"
+[[files.channels]]
+name = "voltage_col2"
+column = 2
+voltage_unit = "V"
+
+[[files]]
+path = "20260701.csv"
+delimiter = ","
+skip_rows = 0
+encoding = "utf-8-sig"
+time_column = 0
+time_unit = "s"
+raw_confirmed = true
+evidence = "User confirmed in TASK-CWT-003 chat 2026-10-30: all ten files are raw PDV; first column s, remaining columns V. Channel names identify columns only."
+[[files.channels]]
+name = "voltage_col1"
+column = 1
+voltage_unit = "V"
+[[files.channels]]
+name = "voltage_col2"
+column = 2
+voltage_unit = "V"
+
+[[files]]
+path = "ch3.csv"
+delimiter = ","
+skip_rows = 0
+encoding = "utf-8-sig"
+time_column = 0
+time_unit = "s"
+raw_confirmed = true
+evidence = "User confirmed in TASK-CWT-003 chat 2026-10-30: all ten files are raw PDV; first column s, remaining columns V. Channel names identify columns only."
+[[files.channels]]
+name = "voltage_col1"
+column = 1
+voltage_unit = "V"
