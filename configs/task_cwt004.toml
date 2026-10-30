@@ -1,0 +1,16 @@
+# Independent benchmark only. Formal core and TASK003 mapping are unchanged.
+protocol = "docs/TASK-CWT-004_PROTOCOL.md"
+mapping = "configs/real_batch.toml"
+frequency_band_hz = [100000000.0, 6000000000.0]
+stft_window_samples = [768, 512]
+stft_overlap_samples = [640, 384]
+stft_hop_samples = 128
+stft_nfft = 4096
+calibration_seeds = [10001, 10002, 10003, 10004, 10005, 10006, 10007, 10008, 10009, 10010]
+evaluation_seeds = [20001, 20002, 20003]
+calibration_target_frame_fpr = 0.01
+sampling_rates_hz = [40000000000.0, 80000000000.0]
+evaluation_cases = 156
+display_columns_max = 2400
+worker_timeout_s = 900
+memory_budget_bytes = 2147483648
