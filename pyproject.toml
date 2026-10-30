@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pdv-cwt"
+version = "0.1.0"
+description = "Synthetic-validated complex Morlet CWT research for unsigned apparent PDV velocity"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "numpy>=2.2,<3", "scipy>=1.15,<2", "PyWavelets>=1.9,<2", "matplotlib>=3.10,<4",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "ruff>=0.11,<1", "mypy>=1.15,<3"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pdv_cwt"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+cache_dir = ".local_cache/pytest_cache"
+addopts = "--basetemp=.local_cache/pytest_tmp -ra"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+extend-exclude = [".local_cache", "artifacts", "raw_data"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+cache_dir = ".local_cache/mypy"
+files = ["src", "tests", "benchmarks"]
+
+[[tool.mypy.overrides]]
+module = ["pywt", "pywt.*", "scipy", "scipy.*"]
+ignore_missing_imports = true

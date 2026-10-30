@@ -1,0 +1,11 @@
+# Initial research configuration, not an optimized or experimentally validated optimum.
+wavelet = "cmor1.5-1.0"
+frequency_min_hz = 100000000.0
+frequency_max_hz = 6000000000.0
+voices_per_octave = 24
+precision = 18
+normalization = "raw"
+max_memory_bytes = 805306368
+alias_tail_tolerance = 0.000001
+# Full numerical support: ceil(8 * scale) + 2 samples on each side.
+# Wavelength is deliberately absent from the core CWT configuration.
